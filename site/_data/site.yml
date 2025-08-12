@@ -1,8 +1,8 @@
 BaseURL: "http://example.org"
-site_title: "Sendit"
+site_title: "Elder"
 favicon_icon: "/images/favicon.ico"
 favicon_image: "/images/favicon.png"
-description: "A polished, marketing website template built with Eleventy"
+description: "Elder Marketing - Expert email marketing solutions for seniors"
 twitter_image: "/images/feature/feature-hero-two.png"
 twitter_site: "@twitter_site"
 image: /images/feature/feature-hero.png
@@ -12,10 +12,10 @@ _inputs:
     type: twitter
     
 theme: 
-  primary_color: "#e53b2a"
-  secondary_color: "#fffbf3"
-  anchor_color: "#ffba08"
-  background_effects_color: "#faaa8f"
+  primary_color: "#002169"
+  secondary_color: "#ffffff"
+  anchor_color: "#E91B0C"
+  background_effects_color: "#d1d9e6"
 
 _inputs:
   twitter_site: 

@@ -1,21 +1,17 @@
 ---
-logo: "/images/logo.svg"
+logo: "/images/logo.png"
 items:
   - link: "/"
     text: Home
-  - link: "/feature"
-    text: Feature
-  - link: "/pricing"
-    text: Pricing
   - link: "/about"
-    text: About
-  - link: "/blog"
-    text: Blog
+    text: About Us
+  - link: "/products"
+    text: Products
   - link: "/contact"
-    text: Contact
+    text: Contact Us
 button:
-  link: "/signup"
-  text: Get Started
+  link: "/contact"
+  text: Get In Touch
 _inputs:
   logo:
     type: image

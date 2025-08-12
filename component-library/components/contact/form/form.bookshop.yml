@@ -9,9 +9,9 @@ spec:
 
 # Defines the structure of this component, as well as the default values
 blueprint:
-  address:
-    heading: Office Address
-    address: "1421 San Pedro St, Los Angeles, CA 90015"
+  # address:
+  #   heading: Office Address
+  #   address: "1421 San Pedro St, Los Angeles, CA 90015"
   phone:
     heading: "Phone"
     cell: "(546) 232 - 9872"
@@ -19,7 +19,7 @@ blueprint:
     image_alt: call-add
   email:
     heading: "Email"
-    email: "hello@example.com"
+    email: "info@eldermarketings.com"
     image: /images/contact/directbox-send.svg
     image_alt: send-box
   form:

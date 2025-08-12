@@ -35,7 +35,7 @@
       </div>
       <div class="col-lg-6 order-1 order-lg-2">
         <div class="contact-form">
-          <form method="post">
+          <form action="https://formcarry.com/s/X4C3-Bpl_Yv" method="POST" enctype="multipart/form-data">
             <h3>{{include.form.heading}}</h3>
             <div class="col-md-12">
               <label for="Name" class="label"
@@ -57,7 +57,7 @@
                 type="tel"
                 class="form-control"
                 id="Name"
-                name="phone-number"
+                name="phone_number"
                 placeholder="{{include.form.phone_number.placeholder}}"
                 required="" />
             </div>
@@ -69,7 +69,7 @@
                 type="email"
                 class="form-control mb-6"
                 id="email"
-                name="_replyto"
+                name="email"
                 placeholder="{{include.form.email.placeholder}}"
                 required="" />
             </div>
@@ -85,7 +85,6 @@
                 rows="8"
                 spellcheck="false"></textarea>
             </div>
-            <input type="text" name="_gotcha" style="display: none" />
             <div class="col-12">
               <button type="submit" class="btn btn-primary btn-lg mt-7">
                 <span class="position-relative"
