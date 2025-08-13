@@ -4,5 +4,9 @@ layout: null
 ---
 
 User-agent: *
+Allow: /
+Disallow: /vendor/
+Disallow: /admin/
+Disallow: /css/
 
 Sitemap: {{ site.data.site.BaseURL }}/sitemap.xml

@@ -7,11 +7,12 @@ layout: null
     {% assign collection_docs = site.documents %}
     {% assign all_pages = site.html_pages | concat: collection_docs %}
     {%- for item in all_pages %}
-        {% unless item.seo.no_index %}
+        {% unless item.seo.noindex %}
             <url>
                 <loc>{{ site.data.site.BaseURL }}{{ item.url | url }}</loc>
-                <lastmod>{{ item.date | date: '%Y-%m-%d' }}</lastmod>
+                <lastmod>{% if item.date %}{{ item.date | date: '%Y-%m-%d' }}{% else %}{{ site.time | date: '%Y-%m-%d' }}{% endif %}</lastmod>
                 <changefreq>{% if item.seo.change_frequency %}{{ item.seo.change_frequency }}{% else %}monthly{% endif %}</changefreq>
+                <priority>{% if item.seo.priority %}{{ item.seo.priority }}{% elsif item.url == "/" %}1.0{% else %}0.8{% endif %}</priority>
             </url>
         {% endunless %}
     {%- endfor %}

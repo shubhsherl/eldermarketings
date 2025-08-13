@@ -1,8 +1,8 @@
-BaseURL: "http://elderpharma.com"
+BaseURL: "https://elderpharma.com"
 site_title: "Elder Pharmaceuticals"
-favicon_icon: "/images/favicon.ico"
-favicon_image: "/images/favicon.png"
-description: "Elder Pharmaceuticals - Manufacturing high-quality drug formulations across therapeutic segments"
+favicon_icon: "https://elderpharma.com/images/favicon.ico"
+favicon_image: "https://elderpharma.com/images/favicon.png"
+description: "Elder Pharmaceuticals - A global leader in manufacturing high-quality drug formulations across diverse therapeutic segments. Our innovative products combine effectiveness, affordability, and safety to deliver superior healthcare solutions for patients worldwide."
 twitter_image: "/images/feature/feature-hero-two.png"
 twitter_site: "@elderpharma"
 image: /images/feature/feature-hero.png

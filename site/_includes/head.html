@@ -6,63 +6,63 @@
       <meta name="viewport" content="width=device-width, initial-scale=1" />
 
       {%- comment -%} Page description for SEO {%- endcomment -%}
-      {% if page.SEO.page_description %}
-         <meta name="description" content="{{ page.SEO.page_description }}">
-         <meta property="og:description" content="{{ page.SEO.page_description }}" />
-      {% else %}
-         <meta name="description" content="{{ site.data.site.description }}">
-         <meta property="og:description" content="{{ site.data.site.description }}" />
-      {% endif %}
+{% if page.seo.page_description %}
+   <meta name="description" content="{{ page.seo.page_description }}">
+   <meta property="og:description" content="{{ page.seo.page_description }}" />
+{% else %}
+   <meta name="description" content="{{ site.data.site.description }}">
+   <meta property="og:description" content="{{ site.data.site.description }}" />
+{% endif %}
 
       {% comment %} meta tags for open graph and twitter {% endcomment %}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="{{ site.data.site.twitter_site }}" />
       {% if page.url == "/" %}
-         <meta name="og:title" content="{{site.data.site.site_title }}" />
+         <meta property="og:title" content="{{site.data.site.site_title }}" />
          <meta property="og:type" content="website" />
-         <meta name="og:image" content="{{ site.data.site.image }}" />
+         <meta property="og:image" content="{{ site.data.site.BaseURL }}{{ site.data.site.image }}" />
          <meta name="twitter:creator" content="{{ site.data.site.twitter_site }}" />
          <meta name="twitter:title" content="{{ site.data.site.site_title }}" />
          {% if site.data.site.twitter_image %}
-            <meta name="twitter:image" content="{{ site.data.site.twitter_image }}" />
+            <meta name="twitter:image" content="{{ site.data.site.BaseURL }}{{ site.data.site.twitter_image }}" />
          {% else %}
-            <meta name="twitter:image" content="{{ site.data.site.image }}" />
+            <meta name="twitter:image" content="{{ site.data.site.BaseURL }}{{ site.data.site.image }}" />
          {% endif %}
       {% else %}
-         <meta name="og:title" content="{{ page.title }}" />
+         <meta property="og:title" content="{{ page.title }}" />
          <meta name="twitter:title" content="{{ page.title }}" />
-         {% if page.SEO.open_graph_type %}
-            <meta property="og:type" content="{{ page.SEO.open_graph_type }}" />
+         {% if page.seo.open_graph_type %}
+            <meta property="og:type" content="{{ page.seo.open_graph_type }}" />
          {% else %}
             <meta property="og:type" content="website" />
          {% endif %}
-         {% if page.SEO.featured_image %}
-            <meta name="og:image" content="{{ page.SEO.featured_image }}" />
-            <meta name="twitter:image" content="{{ page.SEO.featured_image }}" />
+         {% if page.seo.featured_image %}
+            <meta property="og:image" content="{{ site.data.site.BaseURL }}{{ page.seo.featured_image }}" />
+            <meta name="twitter:image" content="{{ site.data.site.BaseURL }}{{ page.seo.featured_image }}" />
          {% else %}
-            <meta name="og:image" content="{{ site.data.site.image }}" />
+            <meta property="og:image" content="{{ site.data.site.BaseURL }}{{ site.data.site.image }}" />
             {% if site.data.site.twitter_image %}
-               <meta name="twitter:image" content="{{ site.data.site.twitter_image }}" />
+               <meta name="twitter:image" content="{{ site.data.site.BaseURL }}{{ site.data.site.twitter_image }}" />
             {% else %}
-               <meta name="twitter:image" content="{{site.data.site.image }}" />
+               <meta name="twitter:image" content="{{ site.data.site.BaseURL }}{{ site.data.site.image }}" />
             {% endif %}
          {% endif %}
-         {% if page.SEO.author_twitter_handle %}  
-            <meta name="twitter:creator" content="{{ page.SEO.author_twitter_handle }}" />
+         {% if page.seo.author_twitter_handle %}  
+            <meta name="twitter:creator" content="{{ page.seo.author_twitter_handle }}" />
          {% else %}
             <meta name="twitter:creator" content="{{ site.data.site.twitter_site }}" />
          {% endif %}
       {% endif %}
 
       {% comment %} Add robots no index {% endcomment %}
-      {% if page.SEO.no_index %}
+      {% if page.seo.noindex %}
          <meta name="robots" content="noindex">
          <meta name="googlebot" content="noindex">
       {% endif %}
 
       {%- comment -%} Canonical URL for SEO {%- endcomment -%}
-      {% if page.SEO.canonical_url %}
-         <link rel="canonical" href="{{ site.data.site.BaseURL }}{{ page.SEO.canonical_url | url }}" />
+      {% if page.seo.canonical_url %}
+         <link rel="canonical" href="{{ site.data.site.BaseURL }}{{ page.seo.canonical_url | url }}" />
       {% else %}
          <link rel="canonical" href="{{ site.data.site.BaseURL }}{{ page.url | url }}" />
       {% endif %}
@@ -73,11 +73,49 @@
       <link href="/vendor/magnific-popup/magnific-popup.css" rel="stylesheet" />
       <link rel="stylesheet" href="/css/theme.css" />
       <link rel="stylesheet" href="/css/custom.css" />
+      
+      <!-- Google Analytics Code -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+      </script>
+      
+      <!-- Critical CSS for above-the-fold content -->
+      <style>
+        /* Critical CSS to improve page rendering speed */
+        body {display: block; opacity: 1;}
+        img {max-width: 100%; height: auto;}
+        .navbar-brand img {max-height: 50px; width: auto;}
+      </style>
 
       {%- comment -%} Favicon {%- endcomment -%}
       <link rel="shortcut icon" href="{{ site.data.site.favicon_icon }}" type="image/x-icon" />
-      <link rel="icon" href="{{ site.data.site.favicon_image }}" type="image/x-icon" />
-      <link rel="apple-touch-icon" href="{{ site.data.site.favicon_image }}">
+      <link rel="icon" href="{{ site.data.site.favicon_image }}" type="image/png" />
+      <link rel="apple-touch-icon" href="{{ site.data.site.favicon_image }}" />
+      <!-- Additional favicon formats for better browser support -->
+      <meta name="msapplication-TileImage" content="{{ site.data.site.favicon_image }}" />
+      <meta name="msapplication-TileColor" content="#002169" />
+      
+      <!-- Schema.org structured data -->
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "{{ site.data.site.site_title }}",
+        "url": "{{ site.data.site.BaseURL }}",
+        "logo": "{{ site.data.site.BaseURL }}/images/logo.png",
+        "description": "{{ site.data.site.description }}",
+        "sameAs": [
+          "https://www.facebook.com/elderpharma",
+          "https://twitter.com/elderpharma",
+          "https://www.linkedin.com/company/elder-pharmaceuticals",
+          "https://www.instagram.com/elderpharma"
+        ]
+      }
+      </script>
    </head>
    <body>
       <header>
@@ -88,7 +126,7 @@
          >
             <div class="container-fluid">
                <a class="navbar-brand" href="/">
-                  <img src="{{ nav.logo }}" alt="Nav-Logo" />
+                  <img src="{{ nav.logo }}" alt="{{ site.data.site.site_title }} Logo" loading="eager" />
                </a>
                <button
                   class="navbar-toggler"
