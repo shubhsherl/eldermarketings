@@ -1,3 +1,5 @@
 /node_modules
 /_site
 /site/.jekyll-cache
+.DS_Store
+**/.DS_Store

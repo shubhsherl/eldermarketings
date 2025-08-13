@@ -22,3 +22,27 @@ footer {
     }
   }
 }
+
+// Product images sizing and styling
+.team {
+  &-member {
+    &-thumb {
+      img.product-image {
+        max-width: 100%;
+        height: auto;
+        transition: transform 0.3s ease;
+        
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+    }
+    
+    &-details {
+      h3 {
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+    }
+  }
+}

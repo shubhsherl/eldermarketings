@@ -30,8 +30,13 @@
 
     &-thumb {
       margin-bottom: $base-margin * 1.5;
+      text-align: center;
+      
       img {
         max-width: 100%;
+        width: 90%; // Make images larger
+        display: inline-block;
+        
         @include media-breakpoint-down-md {
           width: 100%;
         }

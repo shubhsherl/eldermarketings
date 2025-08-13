@@ -9,13 +9,14 @@
     </div>
     <div class="row">
       {% for item in include.team_members %}
-      <div class="col-lg-3 col-md-6">
+      <div class="col-lg-4 col-md-6">
         <div class="team-member">
           <div class="team-member-thumb">
             <img
               src="{{item.image}}"
               alt="{{item.image_alt}}"
               loading="lazy"
+              class="product-image"
               style="border-radius: 20px" />
           </div>
           <div class="team-member-details">
