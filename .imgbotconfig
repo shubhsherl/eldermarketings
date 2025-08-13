@@ -1,0 +1,12 @@
+{
+    "schedule": "onCommit", 
+    "ignoredFiles": [
+        "site/vendor/**",
+        "**/node_modules/**"
+    ],
+    "aggressiveCompression": "true",
+    "compressWiki": "true",
+    "minKBReduced": 10,
+    "prTitle": "🤖 ImgBot: Optimize images",
+    "prBody": "Images were optimized to reduce file size while maintaining quality."
+}

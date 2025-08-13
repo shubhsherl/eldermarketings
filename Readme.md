@@ -1,8 +1,6 @@
-# Sendit
+# Elder Pharmaceuticals
 
-Sendit is a polished, marketing website template for Eleventy. Browse through a [live demo](https://potent-ship.cloudvent.net/).
-
-![Sendit template screenshot](/site/images/_screenshot.png)
+Elder Pharmaceuticals is a professional website for a pharmaceutical company. The site showcases products and services in the pharmaceutical industry.
 
 [![Deploy to CloudCannon](https://buttons.cloudcannon.com/deploy.svg)](https://app.cloudcannon.com/register#sites/connect/github/CloudCannon/sendit-eleventy-template)
 
@@ -48,3 +46,14 @@ Sendit is set up for adding, updating and removing pages, components, posts, nav
 * Theme colors can be set in *Data* / *Site* / *theme*
 * The main colors are set and variants of them are computed
 * The colors will update on the next build
+
+### Image Optimization with ImgBot
+
+* The repository is configured with ImgBot to automatically optimize images
+* ImgBot will raise a PR whenever new images are committed to the repository
+* Configuration details:
+  * Runs on every commit with new images (`"schedule": "onCommit"`)
+  * Uses aggressive compression for maximum optimization
+  * Ignores vendor and node_modules directories
+  * Minimum 10KB size reduction required for optimization
+  * Configuration stored in `.imgbotconfig` file in the root directory
