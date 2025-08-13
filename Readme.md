@@ -47,13 +47,42 @@ Sendit is set up for adding, updating and removing pages, components, posts, nav
 * The main colors are set and variants of them are computed
 * The colors will update on the next build
 
-### Image Optimization with ImgBot
+### Image Optimization
 
-* The repository is configured with ImgBot to automatically optimize images
+#### Manual Image Optimization (Recommended)
+
+We use a custom image optimization system that creates responsive, modern-format images:
+
+1. **Adding New Images**:
+   - Place original high-quality images in the appropriate folder under `site/images/`
+   - Run `npm run optimize-image site/images/your-folder/your-image.jpg` for a single image
+   - Run `npm run optimize-images` to process all unoptimized images
+   - To save space, run `npm run optimize-images -- --remove-originals` to delete original files after optimization
+
+2. **Using Optimized Images in Content**:
+   - In HTML/Jekyll templates: 
+     ```liquid
+     {% include picture.html src="/images/folder/image.jpg" alt="Description" %}
+     ```
+   - In Markdown content:
+     ```markdown
+     ![Image description]({% include picture-url.html src="/images/folder/image.jpg" %})
+     ```
+
+3. **Available Image Formats**:
+   - For each image, the system generates:
+     - Three sizes (480px, 800px, 1400px) in original format
+     - WebP versions of all sizes
+     - AVIF versions of all sizes
+
+For detailed documentation, see [IMAGE_OPTIMIZATION.md](./IMAGE_OPTIMIZATION.md).
+
+#### Automated Optimization with ImgBot (Fallback)
+
+* ImgBot will automatically optimize images that haven't been manually optimized
 * ImgBot will raise a PR whenever new images are committed to the repository
 * Configuration details:
-  * Runs on every commit with new images (`"schedule": "onCommit"`)
+  * Runs daily (`"schedule": "daily"`)
   * Uses aggressive compression for maximum optimization
   * Ignores vendor and node_modules directories
-  * Minimum 10KB size reduction required for optimization
   * Configuration stored in `.imgbotconfig` file in the root directory

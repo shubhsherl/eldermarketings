@@ -1,0 +1,15 @@
+{% comment %}
+This include is for use in Markdown content to get the URL of the most appropriate image.
+Usage: ![Alt text]({% include picture-url.html src="/images/folder/image.jpg" %})
+{% endcomment %}
+
+{% assign base_image_path = include.src %}
+{% assign image_path_parts = base_image_path | split: '.' %}
+{% assign image_ext = image_path_parts | last %}
+{% assign image_base = base_image_path | replace: image_ext, '' | replace: '.', '' %}
+
+{% if site.data.browser_supports_webp %}
+  {{ image_base }}800.webp
+{% else %}
+  {{ image_base }}800.{{ image_ext }}
+{% endif %}

@@ -1,0 +1,17 @@
+{% assign largest = resized | sort: 'width' | last %}
+{% capture srcset %}
+{% for i in resized %}
+    {{ i.path }} {{ i.width }}w,
+{% endfor %}
+{% endcapture %}
+<picture>
+    <source srcset="{{ site.baseurl }}{{ page.image | replace: '.jpg', '.webp' | replace: '.jpeg', '.webp' | replace: '.png', '.webp' }}" type="image/webp">
+    <source srcset="{{ site.baseurl }}{{ page.image | replace: '.jpg', '.avif' | replace: '.jpeg', '.avif' | replace: '.png', '.avif' }}" type="image/avif">
+    <img src="{{ site.baseurl }}{{ largest.path }}" 
+         srcset="{{ srcset | strip_newlines }}" 
+         sizes="(min-width: 1024px) 1400px, (min-width: 768px) 800px, 480px" 
+         alt="{{ alt }}" 
+         width="{{ width }}" 
+         height="{{ height }}" 
+         loading="lazy">
+</picture>

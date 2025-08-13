@@ -2,23 +2,29 @@
    "name": "sendit_jekyll",
    "version": "1.0.0",
    "description": "Elder Pharmaceuticals is a pharmaceutical company manufacturing drug formulations across therapeutic segments",
-   "scripts": {
-      "bookshop": "bookshop-browser",
-      "bookshop-sass:fetch-theme-color": "node site/js/fetch-theme-color.js",
-      "bookshop-sass:build": "bookshop-sass -b component-library -o site/css/theme.css",
-      "bookshop-sass:watch": "bookshop-sass -b component-library -o site/css/theme.css -w",
-      "jekyll": "bundle exec jekyll serve --port 6060 --trace --unpublished",
-      "start": "npm-run-all bookshop-sass:fetch-theme-color bookshop-sass:build --parallel bookshop-sass:watch bookshop jekyll",
-      "package-install": "bundle install && npm i",
-      "build": "jekyll build"
+     "scripts": {
+    "bookshop": "bookshop-browser",
+    "bookshop-sass:fetch-theme-color": "node site/js/fetch-theme-color.js",
+    "bookshop-sass:build": "bookshop-sass -b component-library -o site/css/theme.css",
+    "bookshop-sass:watch": "bookshop-sass -b component-library -o site/css/theme.css -w",
+    "jekyll": "bundle exec jekyll serve --port 6060 --trace --unpublished",
+    "start": "npm-run-all bookshop-sass:fetch-theme-color bookshop-sass:build --parallel bookshop-sass:watch bookshop jekyll",
+    "package-install": "bundle install && npm i",
+    "build": "jekyll build",
+    "optimize-images": "node scripts/optimize-images.js",
+    "optimize-image": "node scripts/optimize-single-image.js"
    },
    "author": "CloudCannon",
    "license": "MIT",
-   "dependencies": {
-      "@bookshop/browser": "3.3.0",
-      "@bookshop/generate": "3.3.0",
-      "@bookshop/jekyll-engine": "3.3.0",
-      "npm-run-all": "^4.1.5",
-      "@bookshop/sass": "3.3.3"
-   }
+     "dependencies": {
+    "@bookshop/browser": "3.3.0",
+    "@bookshop/generate": "3.3.0",
+    "@bookshop/jekyll-engine": "3.3.0",
+    "npm-run-all": "^4.1.5",
+    "@bookshop/sass": "3.3.3",
+    "sharp": "^0.32.1",
+    "imagemin": "^8.0.1",
+    "imagemin-webp": "^8.0.0",
+    "imagemin-avif": "^0.1.4"
+  }
 }

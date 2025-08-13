@@ -13075,9 +13075,12 @@ btn-check:focus + .btn-secondary svg path, .btn-secondary:focus svg path, .btn-s
 }
 .team-member-thumb {
   margin-bottom: 1.5rem;
+  text-align: center;
 }
 .team-member-thumb img {
   max-width: 100%;
+  width: 90%;
+  display: inline-block;
 }
 @media (max-width: 767.98px) {
   .team-member-thumb img {
@@ -13322,7 +13325,7 @@ btn-check:focus + .btn-secondary svg path, .btn-secondary:focus svg path, .btn-s
   box-shadow: 0px 0px 80px rgba(150, 0, 0, 0.06);
   border-radius: 20px;
   z-index: 1;
-  margin-top: -28.2rem;
+  margin-top: 1rem;
   padding: 4.2rem 3.3rem 3.1rem;
   background: #fff;
 }
@@ -13392,6 +13395,10 @@ btn-check:focus + .btn-secondary svg path, .btn-secondary:focus svg path, .btn-s
   -webkit-mask-size: contain;
   width: 115%;
   height: 100%;
+}
+
+.contact-hero + .contact .contact-form > form {
+  margin-top: -28.2rem;
 }
 
 .contact-hero {

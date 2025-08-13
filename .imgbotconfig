@@ -6,7 +6,8 @@
     ],
     "aggressiveCompression": "true",
     "compressWiki": "true",
-    "minKBReduced": 10,
+    "minKBReduced": 5,
+    "compressionLevel": 9,
     "prTitle": "🤖 ImgBot: Optimize images",
-    "prBody": "Images were optimized to reduce file size while maintaining quality."
+    "prBody": "Images were optimized to reduce file size while maintaining quality. All images are now compressed with modern formats (WebP/AVIF) and responsive sizing."
 }

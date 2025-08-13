@@ -1,0 +1,45 @@
+{% comment %}
+Usage: {% include picture.html src="/path/to/image.jpg" alt="Description" width="800" height="600" %}
+{% endcomment %}
+
+{% assign base_image_path = include.src %}
+{% assign image_path_parts = base_image_path | split: '.' %}
+{% assign image_ext = image_path_parts | last %}
+{% assign image_base = base_image_path | replace: image_ext, '' | replace: '.', '' %}
+
+<picture class="responsive-image">
+  <!-- AVIF format -->
+  <source
+    type="image/avif"
+    srcset="{{ image_base }}480.avif 480w, 
+            {{ image_base }}800.avif 800w, 
+            {{ image_base }}1400.avif 1400w"
+    sizes="(max-width: 480px) 480px, 
+           (max-width: 800px) 800px, 
+           1400px">
+
+  <!-- WebP format -->
+  <source
+    type="image/webp"
+    srcset="{{ image_base }}480.webp 480w, 
+            {{ image_base }}800.webp 800w, 
+            {{ image_base }}1400.webp 1400w"
+    sizes="(max-width: 480px) 480px, 
+           (max-width: 800px) 800px, 
+           1400px">
+
+  <!-- Original format (fallback) -->
+  <img
+    src="{{ base_image_path }}"
+    srcset="{{ image_base }}480.{{ image_ext }} 480w, 
+            {{ image_base }}800.{{ image_ext }} 800w, 
+            {{ image_base }}1400.{{ image_ext }} 1400w"
+    sizes="(max-width: 480px) 480px, 
+           (max-width: 800px) 800px, 
+           1400px"
+    alt="{{ include.alt }}"
+    {% if include.width %}width="{{ include.width }}"{% endif %}
+    {% if include.height %}height="{{ include.height }}"{% endif %}
+    loading="lazy"
+    decoding="async">
+</picture>
