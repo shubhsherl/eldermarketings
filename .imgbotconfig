@@ -1,5 +1,5 @@
 {
-    "schedule": "onCommit", 
+    "schedule": "daily", 
     "ignoredFiles": [
         "site/vendor/**",
         "**/node_modules/**"
