@@ -1,6 +1,27 @@
 ---
 ---
 
+// Global image styling
+img {
+  border-radius: 20px;
+}
+
+// Exception for icons and small UI elements
+.icon, svg, i img, [class*="icon"] img, [class*="-icon"] img {
+  border-radius: 0;
+}
+
+// Make testimonial images circular and properly sized
+.testimonial-item-person .thumb img {
+  border-radius: 50%; // Make perfectly circular
+  width: 120px !important; // Increase size
+  height: 120px !important;
+  object-fit: cover; // Ensure image fills the circle
+  margin: 0 auto 15px;
+  display: block; // Center the image
+  border: 3px solid #f1f1f1; // Add a border
+}
+
 // Custom styles to resize the Elder logo
 header {
   .navbar {
@@ -8,6 +29,7 @@ header {
       img {
         max-height: 60px;
         width: auto;
+        border-radius: 0; // Reset border-radius for logo
       }
     }
   }
@@ -19,6 +41,21 @@ footer {
     img {
       max-height: 60px;
       width: auto;
+      border-radius: 0; // Reset border-radius for logo
+    }
+  }
+}
+
+// Hero image sizing
+.hero-two {
+  &-banner {
+    img {
+      max-width: 100%;
+      height: auto;
+      max-height: 500px;
+      width: auto;
+      object-fit: contain;
+      border-radius: 20px;
     }
   }
 }
