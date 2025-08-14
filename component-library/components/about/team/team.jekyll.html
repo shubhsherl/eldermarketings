@@ -12,12 +12,7 @@
       <div class="col-lg-4 col-md-6">
         <div class="team-member">
           <div class="team-member-thumb">
-            <img
-              src="{{item.image}}"
-              alt="{{item.image_alt}}"
-              loading="lazy"
-              class="product-image"
-              style="border-radius: 20px" />
+            {% include picture.html src=item.image alt=item.image_alt %}
           </div>
           <div class="team-member-details">
             <h3>{{item.name}}</h3>
