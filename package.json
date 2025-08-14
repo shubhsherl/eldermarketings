@@ -1,7 +1,7 @@
 {
    "name": "sendit_jekyll",
    "version": "1.0.0",
-   "description": "Elder Pharmaceuticals is a pharmaceutical company manufacturing drug formulations across therapeutic segments",
+   "description": "Elder is a pharmaceutical company manufacturing drug formulations across therapeutic segments",
      "scripts": {
     "bookshop": "bookshop-browser",
     "bookshop-sass:fetch-theme-color": "node site/js/fetch-theme-color.js",

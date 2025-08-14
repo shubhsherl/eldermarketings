@@ -1,6 +1,6 @@
-# Elder Pharmaceuticals
+# Elder Marketings
 
-Elder Pharmaceuticals is a professional website for a pharmaceutical company. The site showcases products and services in the pharmaceutical industry.
+Elder Marketings is a professional website for a pharmaceutical company. The site showcases products and services in the pharmaceutical industry.
 
 [![Deploy to CloudCannon](https://buttons.cloudcannon.com/deploy.svg)](https://app.cloudcannon.com/register#sites/connect/github/CloudCannon/sendit-eleventy-template)
 
