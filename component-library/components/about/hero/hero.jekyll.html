@@ -24,7 +24,7 @@
         {% elsif item.placement == "back_top_left" %}
           image-three
         {% endif %}">
-            <img src="{{item.image}}" alt="item.image_alt" loading="lazy"/>
+            {% include picture.html src=item.image alt=item.image_alt %}
           </div>
         {% endfor %}
           <div class="pattern">

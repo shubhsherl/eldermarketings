@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="error-content text-center">
-          <img src="{{include.image}}" alt="{{include.image_alt}}" />
+          {% include picture.html src=include.image alt=include.image_alt %}
           <h3 class="my-5">{{include.description | markdownify}}</h3>
           <a href="/" class="btn btn-lg btn-primary"> Try Again </a>
         </div>

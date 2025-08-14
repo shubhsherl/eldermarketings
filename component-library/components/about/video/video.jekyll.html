@@ -15,12 +15,7 @@
       </div>
       <div class="col-lg-6">
         <div class="works-banner">
-          <img
-            src="{{include.video.image}}"
-            class="w-100"
-            alt="{{include.video.image_alt}}"
-            loading="lazy"
-            style="border-radius: 20px" />
+          {% include picture.html src=include.video.image alt=include.video.image_alt %}
           <div class="effect">
           </div>
           <div
