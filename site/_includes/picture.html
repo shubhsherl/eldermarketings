@@ -5,7 +5,9 @@ Usage: {% include picture.html src="/path/to/image.jpg" alt="Description" width=
 {% assign base_image_path = include.src %}
 {% assign image_path_parts = base_image_path | split: '.' %}
 {% assign image_ext = image_path_parts | last %}
-{% assign image_base = base_image_path | replace: image_ext, '' | replace: '.', '' %}
+{% assign filename = base_image_path | split: '/' | last | split: '.' | first %}
+{% assign dirname = base_image_path | remove: filename | remove: image_ext | remove: '.' %}
+{% assign image_base = dirname | append: filename | append: '-' %}
 
 <picture class="responsive-image">
   <!-- AVIF format -->
