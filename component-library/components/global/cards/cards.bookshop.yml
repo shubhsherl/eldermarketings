@@ -1,0 +1,17 @@
+label: Cards
+preview:
+  text: Cards display for products and features
+icon: grid_view
+
+blueprint:
+  block_alignment: left  # Options: left, center, right
+  title: Cards Title
+  description: Cards section description
+  cards:
+    - image: https://via.placeholder.com/300x200
+      image_alt: Card image alt
+      title: Card Title
+      description: Card description text
+      link:
+        text: Learn More
+        url: "#"

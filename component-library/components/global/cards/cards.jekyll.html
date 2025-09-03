@@ -1,0 +1,40 @@
+{% assign block_alignment_class = "" %}
+{% if include.block_alignment == "center" %}
+  {% assign block_alignment_class = "text-center" %}
+{% elsif include.block_alignment == "right" %}
+  {% assign block_alignment_class = "text-end" %}
+{% endif %}
+
+<section class="cards-section py-5">
+  <div class="container">
+    {% if include.title or include.description %}
+      <div class="section-heading mb-5 {{ block_alignment_class }}">
+        {% if include.title %}<h2 class="section-title">{{ include.title }}</h2>{% endif %}
+        {% if include.description %}<p class="section-description mb-4">{{ include.description }}</p>{% endif %}
+      </div>
+    {% endif %}
+    
+    <div class="row">
+      {% for card in include.cards %}
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            {% if card.image %}
+              <div class="card-img-top-container">
+                <img src="{{ card.image }}" alt="{{ card.image_alt }}" class="card-img-top p-4">
+              </div>
+            {% endif %}
+            <div class="card-body">
+              {% if card.title %}<h5 class="card-title">{{ card.title }}</h5>{% endif %}
+              {% if card.description %}<p class="card-text">{{ card.description }}</p>{% endif %}
+            </div>
+            {% if card.link.text and card.link.url %}
+              <div class="card-footer bg-white border-top-0">
+                <a href="{{ card.link.url }}" class="btn btn-outline-primary">{{ card.link.text }}</a>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

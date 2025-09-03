@@ -1,0 +1,88 @@
+{% assign background_class = "" %}
+{% if include.background == "dark" %}
+  {% assign background_class = "bg-dark text-white" %}
+{% elsif include.background == "light" %}
+  {% assign background_class = "bg-light" %}
+{% elsif include.background == "primary" %}
+  {% assign background_class = "bg-primary text-white" %}
+{% endif %}
+
+{% assign container_class = "container" %}
+{% if include.container == "container-fluid" %}
+  {% assign container_class = "container-fluid" %}
+{% endif %}
+
+{% assign block_alignment_class = "" %}
+{% if include.block_alignment == "center" %}
+  {% assign block_alignment_class = "text-center" %}
+{% elsif include.block_alignment == "right" %}
+  {% assign block_alignment_class = "text-end" %}
+{% endif %}
+
+{% assign title_alignment_class = "" %}
+{% if include.title_alignment == "center" %}
+  {% assign title_alignment_class = "text-center" %}
+{% elsif include.title_alignment == "right" %}
+  {% assign title_alignment_class = "text-end" %}
+{% endif %}
+
+<section class="section py-5 {{ background_class }} {{ block_alignment_class }}">
+  <div class="{{ container_class }}">
+    {% if include.title or include.description %}
+      <div class="section-heading mb-5 {{ title_alignment_class }}">
+        {% if include.title %}<h2 class="section-title">{{ include.title }}</h2>{% endif %}
+        {% if include.description %}<p class="section-description">{{ include.description }}</p>{% endif %}
+      </div>
+    {% endif %}
+    
+    <div class="row">
+      {% if include.sidebar.size > 0 %}
+      <div class="col-lg-3 sidebar">
+        {% for item in include.sidebar %}
+          <div class="sidebar-item">
+            {% if item.title %}<h4>{{ item.title }}</h4>{% endif %}
+            {% if item.content %}<div>{{ item.content }}</div>{% endif %}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="col-lg-9 content">
+      {% else %}
+      <div class="col-12 content">
+      {% endif %}
+        <div class="row">
+          {% for column in include.columns %}
+            {% assign col_class = "col-lg-" | append: column.width %}
+            
+            {% assign column_alignment = "" %}
+            {% if column.block_alignment == "center" %}
+              {% assign column_alignment = "d-flex align-items-center justify-content-center flex-column" %}
+            {% elsif column.block_alignment == "right" %}
+              {% assign column_alignment = "d-flex align-items-end justify-content-end flex-column" %}
+            {% endif %}
+            
+            {% assign content_alignment = "" %}
+            {% if column.text_alignment == "center" %}
+              {% assign content_alignment = "text-center" %}
+            {% elsif column.text_alignment == "right" %}
+              {% assign content_alignment = "text-end" %}
+            {% endif %}
+            
+            <div class="{{ col_class }} {{ column_alignment }} {{ content_alignment }}">
+              {% if column.content_html %}
+                {{ column.content_html }}
+              {% endif %}
+              
+              {% if column.images.size > 0 %}
+                <div class="images-container">
+                  {% for img in column.images %}
+                    <img src="{{ img.image }}" alt="{{ img.image_alt }}" {% if img.width %}width="{{ img.width }}"{% endif %} {% if img.height %}height="{{ img.height }}"{% endif %} class="img-fluid {% if img.class %}{{ img.class }}{% endif %}">
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

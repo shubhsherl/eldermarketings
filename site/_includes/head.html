@@ -75,6 +75,9 @@
       <link rel="stylesheet" href="/css/custom.css" />
       <link rel="stylesheet" href="/css/responsive-images.css" />
       
+      <!-- Contact Conversion Tracking -->
+      <script src="/js/contact-conversion.js" defer></script>
+      
       <!-- Google Analytics Code -->
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-LQ75B4DKK2"></script>
       <script>
@@ -83,6 +86,43 @@
         gtag('js', new Date());
         gtag('config', 'G-LQ75B4DKK2');
       </script>
+
+      <!-- Google tag (gtag.js) event - delayed navigation helper -->
+      <script>
+      // Helper function to delay opening a URL until a gtag event is sent.
+      // Call it in response to an action that should navigate to a URL.
+      function gtagSendEvent(url) {
+         var callback = function () {
+            if (typeof url === 'string') {
+               window.location = url;
+            }
+         };
+         gtag('event', 'qualify_lead', {
+            'event_callback': callback,
+            'event_timeout': 2000,
+         });
+         return false;
+      }
+
+      // Function to track contact button conversions
+      function gtag_report_conversion(url) {
+         var callback = function () {
+            if (typeof(url) !== 'undefined') {
+               window.location = url;
+            }
+         };
+         gtag('event', 'conversion', {
+            'send_to': 'G-LQ75B4DKK2',
+            'event_category': 'Contact',
+            'event_action': 'click',
+            'event_label': 'Contact Button',
+            'event_callback': callback,
+            'event_timeout': 2000
+         });
+         return false;
+      }
+      </script>
+ 
       
       <!-- Critical CSS for above-the-fold content -->
       <style>
@@ -215,10 +255,18 @@
                   </ul>
                </div>
                <div class="d-none d-lg-block">
-                  <div class="nav-item">
-                     <a href="{{ nav.button.link }}" class="btn btn-sm btn-links"
-                        >{{ nav.button.text }}</a
-                     >
+                  <div class="d-flex align-items-center">
+                     <div class="me-3">
+                        <a href="tel:+918601875910" class="text-decoration-none">
+                           <i class="ph-phone me-1" aria-hidden="true"></i>
+                           <span>(91) 86018 75910</span>
+                        </a>
+                     </div>
+                     <div class="nav-item">
+                        <a href="{{ nav.button.link }}" class="btn btn-sm btn-links" onclick="return gtag_report_conversion('{{ nav.button.link }}')"
+                           >{{ nav.button.text }}</a
+                        >
+                     </div>
                   </div>
                </div>
             </div>

@@ -2,18 +2,18 @@
    "name": "sendit_jekyll",
    "version": "1.0.0",
    "description": "Elder is a pharmaceutical company manufacturing drug formulations across therapeutic segments",
-     "scripts": {
-    "bookshop": "bookshop-browser",
-    "bookshop-sass:fetch-theme-color": "node site/js/fetch-theme-color.js",
-    "bookshop-sass:build": "bookshop-sass -b component-library -o site/css/theme.css",
-    "bookshop-sass:watch": "bookshop-sass -b component-library -o site/css/theme.css -w",
-    "jekyll": "bundle exec jekyll serve --port 6060 --trace --unpublished",
-    "start": "npm-run-all bookshop-sass:fetch-theme-color bookshop-sass:build --parallel bookshop-sass:watch bookshop jekyll",
-    "package-install": "bundle install && npm i",
-    "build": "jekyll build",
-    "optimize-images": "node scripts/optimize-images.js",
-    "optimize-image": "node scripts/optimize-single-image.js"
-   },
+    "scripts": {
+      "bookshop": "bookshop-browser",
+      "bookshop-sass:fetch-theme-color": "node site/js/fetch-theme-color.js",
+      "bookshop-sass:build": "bookshop-sass -b component-library -o site/css/theme.css",
+      "bookshop-sass:watch": "bookshop-sass -b component-library -o site/css/theme.css -w",
+      "jekyll": "bundle exec jekyll serve --port 6060 --trace --unpublished",
+      "start": "npm-run-all bookshop-sass:fetch-theme-color bookshop-sass:build --parallel bookshop-sass:watch bookshop jekyll",
+      "package-install": "bundle install && npm i",
+      "build": "jekyll build",
+      "optimize-images": "node scripts/optimize-images.js",
+      "optimize-image": "node scripts/optimize-single-image.js"
+    },
    "author": "CloudCannon",
    "license": "MIT",
      "dependencies": {

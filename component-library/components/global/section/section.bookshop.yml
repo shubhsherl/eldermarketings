@@ -1,0 +1,27 @@
+label: Section
+preview:
+  text: Generic section with columns
+icon: view_column
+
+blueprint:
+  background: light  # Options: light, dark, primary, none
+  container: container  # Options: container, container-fluid
+  block_alignment: left  # Options: left, center, right
+  title_alignment: left  # Options: left, center, right
+  title: Section Title
+  description: Section description
+  sidebar:
+    - title: Sidebar Title
+      content: Sidebar content
+  columns:
+    - width: 6  # Bootstrap column width (1-12)
+      block_alignment: left  # Options: left, center, right
+      content_alignment: left  # Options: left, center, right
+      text_alignment: left  # Options: left, center, right
+      content_html: <p>Column content</p>
+      images:
+        - image: https://via.placeholder.com/400x300
+          image_alt: Image alt text
+          width: 400
+          height: 300
+          class: # Optional CSS class for the image
