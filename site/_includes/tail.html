@@ -40,22 +40,25 @@
       </div>
    </div>
 </footer>
-<script src="/vendor/jQuery/jquery.min.js"></script>
-<script src="/vendor/bootstrap/bootstrap.bundle.min.js"></script>
-<script src="/vendor/waypoints/waypoints.min.js"></script>
-<script src="/vendor/magnific-popup/magnific-popup.min.js"></script>
-<script src="/js/script.js"></script>
+<!-- Core JS files -->
+<script src="/vendor/jQuery/jquery.min.js" defer></script>
+<script src="/vendor/bootstrap/bootstrap.bundle.min.js" defer></script>
+
+<!-- Secondary JS files loaded with lower priority -->
+<script src="/vendor/waypoints/waypoints.min.js" defer></script>
+<script src="/vendor/magnific-popup/magnific-popup.min.js" defer></script>
+<script src="/js/script.js" defer></script>
 
 <!-- Product Data Module - Used by product related pages -->
 {% if page.url == "/products/" or page.url == "/product/" or page.url == "/contact/" %}
-<script src="/js/product-data.js"></script>
+<script src="/js/product-data.js" defer></script>
 {% endif %}
 
 {% if page.url == "/product/" %}
-<script src="/js/product-details.js"></script>
+<script src="/js/product-details.js" defer></script>
 {% endif %}
 {% if page.url == "/contact/" %}
-<script src="/js/contact-form.js"></script>
+<script src="/js/contact-form.js" defer></script>
 {% endif %}
 </body>
 </html>

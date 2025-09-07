@@ -11,19 +11,66 @@ function loadProductData(callback) {
     return;
   }
 
-  // Fetch the products.json file
-  $.getJSON('/js/data/products.json')
-    .done(function(data) {
+  // Use fetch API with priority hints for more efficient loading
+  if ('connection' in navigator && (navigator.connection.saveData || navigator.connection.effectiveType.includes('2g'))) {
+    // If on slow connection or save-data mode, use simpler data approach
+    console.info('Using lightweight data approach due to network constraints');
+    // Call callback with basic data structure to minimize payload
+    callback({ 
+      products: [], 
+      categories: ['Tablets', 'Injections', 'Dry Syrups', 'Capsules'], 
+      defaultFeatures: [
+        "High quality formulation",
+        "Manufactured to the highest standards",
+        "Backed by Elder's quality assurance"
+      ], 
+      defaultPrice: "Contact for price" 
+    });
+    // Still load the data in the background for future use
+    setTimeout(function() {
+      $.getJSON('/js/data/products.json', function(data) { productData = data; });
+    }, 2000);
+    return;
+  }
+  
+  // Use link preload for critical JSON if supported
+  if ('fetch' in window) {
+    fetch('/js/data/products.json', {
+      priority: 'high', // Priority hint for browsers that support it
+      cache: 'force-cache'
+    })
+    .then(response => response.json())
+    .then(data => {
       // Store the data for future use
       productData = data;
       // Call the callback function with the data
       callback(data);
     })
-    .fail(function(jqxhr, textStatus, error) {
-      console.error("Failed to load product data:", textStatus, error);
-      // Call callback with empty data structure in case of error
-      callback({ products: [], categories: [], defaultFeatures: [], defaultPrice: "Contact for price" });
+    .catch(error => {
+      console.error("Failed to load product data:", error);
+      // Fall back to jQuery method on failure
+      $.getJSON('/js/data/products.json')
+        .done(function(data) {
+          productData = data;
+          callback(data);
+        })
+        .fail(function() {
+          // Call callback with empty data structure in case of error
+          callback({ products: [], categories: [], defaultFeatures: [], defaultPrice: "Contact for price" });
+        });
     });
+  } else {
+    // Fallback for older browsers
+    $.getJSON('/js/data/products.json')
+      .done(function(data) {
+        productData = data;
+        callback(data);
+      })
+      .fail(function(jqxhr, textStatus, error) {
+        console.error("Failed to load product data:", textStatus, error);
+        callback({ products: [], categories: [], defaultFeatures: [], defaultPrice: "Contact for price" });
+      });
+  }
 }
 
 // Function to get a product by slug
