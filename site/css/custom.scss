@@ -60,6 +60,27 @@ footer {
   }
 }
 
+// Carousel fade effect customization
+.carousel-fade {
+  .carousel-item {
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out !important;  // Longer, smoother fade transition
+    
+    &.active {
+      opacity: 1;
+    }
+  }
+  
+  .carousel-item:not(.active) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: block;
+    visibility: visible;
+  }
+}
+
 // Product item grid styles
 .product-item {
   display: flex;

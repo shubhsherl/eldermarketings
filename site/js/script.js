@@ -1,18 +1,17 @@
 $(document).ready(function () {
   "use strict";
   
-  // Initialize hero carousel with auto-sliding and slide effect
+  // Initialize hero carousel with auto-sliding and fade effect
   var heroCarousel = $('#heroCarousel');
   heroCarousel.carousel({
-    interval: 5000,
+    interval: 3000,
     ride: 'carousel',
     wrap: true
   });
   
-  // Additional event handlers for smooth slide transitions
+  // Additional event handlers for smooth fade transitions
   heroCarousel.on('slide.bs.carousel', function (e) {
-    var direction = e.direction === 'left' ? 'next' : 'prev';
-    $(this).find('.carousel-item-' + direction).addClass('active');
+    // Don't need direction-specific handling for fade effect
   });
 
   $(window).on("scroll", function () {
