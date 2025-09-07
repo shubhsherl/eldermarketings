@@ -62,9 +62,7 @@ $(document).ready(function() {
                         <img src="${related.image}" alt="${related.name}" class="img-fluid" onerror="this.src='/images/products/placeholder.png'">
                       </div>
                       <div class="related-product-details">
-                        <h4>${related.name}</h4>
-                        <p class="related-product-description">${getShortDescription(related.description)}</p>
-                        <p class="related-product-price">₹${related.price}</p>
+                        <h4>${related.name} <span class="related-product-price">₹${related.price || 'Contact for pricing'}</span></h4>
                       </div>
                     </a>
                   </div>

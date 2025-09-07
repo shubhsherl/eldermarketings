@@ -125,7 +125,7 @@ footer {
 
 // Styling for product cards on the products page
 .product-item {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 // Single product page styling
@@ -273,13 +273,8 @@ footer {
   box-shadow: 0 3px 10px rgba(0,0,0,0.08);
   transition: all 0.3s ease;
   width: 100%;
-  height: 360px; /* Fixed total height */
   display: flex;
   flex-direction: column;
-  
-  @media (max-width: 767px) {
-    height: 340px; /* Slightly smaller on mobile */
-  }
   
   &:hover {
     transform: translateY(-5px);
@@ -298,8 +293,8 @@ footer {
     padding: 0;
     background-color: #f8f8f8;
     text-align: center;
-    height: 200px; /* Fixed height for image container */
-    min-height: 200px; /* Ensure minimum height */
+    // height: 200px; /* Fixed height for image container */
+    // min-height: 200px; /* Ensure minimum height */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -307,8 +302,8 @@ footer {
     position: relative;
     
     @media (max-width: 767px) {
-      height: 180px;
-      min-height: 180px;
+      // height: 180px;
+      // min-height: 180px;
     }
     
     img {
@@ -317,20 +312,19 @@ footer {
       width: 100%;
       object-fit: cover;
       padding: 0;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      // position: absolute;
+      // top: 50%;
+      // left: 50%;
+      // transform: translate(-50%, -50%);
       margin: 0;
       
       &.contain-fit {
         object-fit: contain;
-        padding: 10px;
+        // padding: 10px;
         width: auto;
         height: auto;
-        max-height: 90%;
-        max-width: 90%;
-        /* No need to adjust positioning as it inherits from parent */
+        // max-height: 90%;
+        // max-width: 90%;
       }
       
       @media (max-width: 767px) {
@@ -358,28 +352,19 @@ footer {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-    }
-    
-    .related-product-description {
-      font-size: 0.85rem;
-      color: #444;
-      margin-bottom: 8px;
-      line-height: 1.4;
-      font-weight: normal;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      height: 38px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     
     .related-product-price {
       font-weight: 600;
       color: #002169;
-      margin: 8px 0 0;
+      margin: 0;
       font-size: 1.05rem;
       text-align: right;
+      margin-left: 8px;
+      white-space: nowrap;
     }
   }
 }

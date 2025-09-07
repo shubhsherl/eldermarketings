@@ -50,9 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <img src="${product.image}" alt="${product.name}" onerror="this.src='/images/products/placeholder.png'" />
             </div>
             <div class="related-product-details">
-              <h4>${product.name}</h4>
-              <p class="related-product-description">${getShortDescription(product.description)}</p>
-              <p class="related-product-price">₹${product.price || 'Contact for pricing'}</p>
+              <h4>${product.name} <span class="related-product-price">₹${product.price || 'Contact for pricing'}</span></h4>
             </div>
           </a>
         </div>
