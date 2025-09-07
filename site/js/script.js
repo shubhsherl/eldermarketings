@@ -1,5 +1,11 @@
 $(document).ready(function () {
   "use strict";
+  
+  // Initialize hero carousel with auto-sliding
+  $('#heroCarousel').carousel({
+    interval: 5000,
+    ride: 'carousel'
+  });
 
   $(window).on("scroll", function () {
     var windscroll = $(window).scrollTop();

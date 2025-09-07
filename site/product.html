@@ -1,0 +1,62 @@
+---
+title: Elder Pharmaceuticals - Product Details
+permalink: /product/
+seo:
+  page_description: Product details for our pharmaceutical products
+  canonical_url: 
+  featured_image: 
+  author_twitter_handle: 
+  open_graph_type:
+  noindex: false
+content_blocks:
+---
+
+<section class="single-product">
+  <div class="container">
+    <div class="row product-container" id="product-container">
+      <!-- Product details will be dynamically loaded here -->
+      <div class="col-lg-6 align-content-center">
+        <div class="product-image">
+          <img src="/images/products/placeholder.png" alt="Product Image" id="product-image" class="img-fluid">
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="product-details">
+          <h1 id="product-name">Product Name</h1>
+          <div class="product-meta mb-4">
+            <p class="product-category" id="product-category">Category: <span>Tablets</span></p>
+            <div class="price-container">
+              <p class="product-price">MRP: <span id="product-price">₹XX.XX</span></p>
+            </div>
+          </div>
+          <div class="product-description mb-4">
+            <h3>Description</h3>
+            <p id="product-description">Product description will appear here.</p>
+          </div>
+          <div class="product-features mb-4">
+            <h3>Key Features</h3>
+            <ul id="product-features">
+              <li>Feature will appear here</li>
+            </ul>
+          </div>
+          <div class="product-action">
+            <a href="/contact/?product=" id="contact-link" class="btn btn-primary">Contact Us About This Product</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <hr class="related-products-divider my-5">
+    
+    <div class="row mt-5 pt-4">
+      <div class="col-12">
+        <h2 class="text-center mb-5 related-products-heading">Related Products</h2>
+        <div class="row" id="related-products">
+          <!-- Related products will be dynamically loaded here -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="/js/product-details.js"></script>

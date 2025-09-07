@@ -73,6 +73,16 @@
                 placeholder="{{include.form.email.placeholder}}"
                 required="" />
             </div>
+            <div class="col-md-12">
+              <input
+                type="hidden"
+                id="product-interest"
+                name="product_interest"
+                value="" />
+              <div id="product-interest-display" class="product-interest-box mb-3" style="display: none;">
+                <p class="mb-0">Interested in: <span id="product-interest-name">Product Name</span></p>
+              </div>
+            </div>
             <div class="col-12">
               <label for="email" class="label"
                 >{{include.form.message.heading}}</label

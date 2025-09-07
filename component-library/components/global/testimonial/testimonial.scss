@@ -10,6 +10,17 @@
   @include media-breakpoint-down-sm {
     border-bottom: none;
   }
+  &-item-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    &:hover {
+      text-decoration: none;
+      color: inherit;
+      transform: translateY(-5px);
+    }
+  }
   &-content {
     padding-right: 50px;
     @include media-breakpoint-down-xl {

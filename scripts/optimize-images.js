@@ -3,10 +3,22 @@ const path = require('path');
 const sharp = require('sharp');
 
 // Parse command line arguments
-const args = process.argv.slice(2);
+const args = process.argv;
 const REMOVE_ORIGINALS = args.includes('--remove-originals');
 
-const IMAGES_DIR = path.join(__dirname, '../site/images');
+// Check if a custom directory is provided
+let customDir;
+for (let i = 0; i < args.length; i++) {
+  if (args[i] === '--dir' && i + 1 < args.length) {
+    customDir = args[i + 1];
+    break;
+  }
+}
+
+const IMAGES_DIR = customDir 
+  ? path.join(__dirname, '..', customDir)
+  : path.join(__dirname, '../site/images');
+console.log(`Processing directory: ${IMAGES_DIR}`);
 const EXTENSIONS = ['.jpg', '.jpeg', '.png'];  // Don't process WebP files
 const RESPONSIVE_SIZES = [480, 800, 1400];
 
@@ -137,6 +149,7 @@ async function processImages(directory) {
 (async () => {
   try {
     console.log('Starting image optimization...');
+    console.log(`Processing images in directory: ${IMAGES_DIR}`);
     if (REMOVE_ORIGINALS) {
       console.log('⚠️ Original images will be removed after optimization');
     }

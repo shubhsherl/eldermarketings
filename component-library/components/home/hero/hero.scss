@@ -77,6 +77,91 @@
     img {
       border-radius: 0px;
     }
+    
+    &.hero-slideshow {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      
+      @include media-breakpoint-down-lg {
+        margin: 2rem auto;
+        max-width: 90%;
+      }
+      
+      @include media-breakpoint-down-md {
+        max-width: 100%;
+      }
+      
+      .carousel {
+        border-radius: 8px;
+        overflow: hidden;
+        width: 100%;
+        
+        .carousel-inner {
+          border-radius: 8px;
+          display: flex;
+          align-items: center;
+        }
+        
+        .carousel-item {
+          transition: transform 0.6s ease-in-out;
+          text-align: center;
+          
+          .carousel-image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 450px;
+            overflow: hidden;
+            
+            @include media-breakpoint-down-lg {
+              height: 400px;
+            }
+            
+            @include media-breakpoint-down-md {
+              height: 350px;
+            }
+            
+            @include media-breakpoint-down-sm {
+              height: 300px;
+            }
+          }
+          
+          img, picture {
+            margin: 0 auto;
+            display: block;
+            height: auto;
+            width: auto;
+            max-width: 100%;
+            object-fit: contain;
+            max-height: 100%;
+          }
+        }
+        
+        .carousel-control-prev,
+        .carousel-control-next {
+          width: 10%;
+        }
+        
+        .carousel-indicators {
+          margin-bottom: 1rem;
+          
+          button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            margin: 0 5px;
+            
+            &.active {
+              background-color: white;
+            }
+          }
+        }
+      }
+    }
+    
     &-shape {
       -webkit-mask-image: url(/images/hero/hero-three-shape.png);
       mask-image: url(/images/hero/hero-three-shape.png);

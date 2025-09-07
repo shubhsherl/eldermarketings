@@ -7,20 +7,40 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      {% for item in include.team_members %}
-      <div class="col-lg-4 col-md-6">
-        <div class="team-member">
-          <div class="team-member-thumb">
-            {% include picture.html src=item.image alt=item.image_alt %}
-          </div>
-          <div class="team-member-details">
-            <h3>{{item.name}}</h3>
-            <p>{{item.designation}}</p>
-          </div>
+    <div class="row mb-5">
+      <div class="col-lg-10 mx-auto text-center">
+        <div class="product-filter-buttons">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="tablets">Tablets</button>
+          <button class="filter-btn" data-filter="capsules">Capsules</button>
+          <button class="filter-btn" data-filter="softgel-capsules">Softgel Capsules</button>
+          <button class="filter-btn" data-filter="injections">Injections</button>
+          <button class="filter-btn" data-filter="dry-syrups">Dry Syrups</button>
+          <button class="filter-btn" data-filter="sachets">Sachets</button>
         </div>
       </div>
-      {% endfor %}
+    </div>
+    <div class="row">
+      {% if include.team_members.size > 0 %}
+        {% for item in include.team_members %}
+        <div class="col-lg-4 col-md-6 product-item">
+          <div class="related-product">
+            <a href="/product/?name={{item.name | slugify}}">
+              <div class="related-product-image">
+                {% include picture.html src=item.image alt=item.image_alt %}
+              </div>
+              <div class="related-product-details">
+                <h4>{{item.name}}</h4>
+                <p class="related-product-description">{{item.designation}}</p>
+                <p class="related-product-price">₹150.00</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <!-- Products will be populated dynamically by JavaScript -->
+      {% endif %}
     </div>
   </div>
 </div>
