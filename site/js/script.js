@@ -1,10 +1,18 @@
 $(document).ready(function () {
   "use strict";
   
-  // Initialize hero carousel with auto-sliding
-  $('#heroCarousel').carousel({
+  // Initialize hero carousel with auto-sliding and slide effect
+  var heroCarousel = $('#heroCarousel');
+  heroCarousel.carousel({
     interval: 5000,
-    ride: 'carousel'
+    ride: 'carousel',
+    wrap: true
+  });
+  
+  // Additional event handlers for smooth slide transitions
+  heroCarousel.on('slide.bs.carousel', function (e) {
+    var direction = e.direction === 'left' ? 'next' : 'prev';
+    $(this).find('.carousel-item-' + direction).addClass('active');
   });
 
   $(window).on("scroll", function () {
