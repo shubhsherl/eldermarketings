@@ -18,6 +18,8 @@ content_blocks:
     team_members: []
 ---
 
+<!-- Include responsive product images script -->
+<script src="/js/responsive-product-images.js"></script>
 <script>
 // Function to dynamically populate products from JSON data
 document.addEventListener('DOMContentLoaded', function() {
@@ -46,8 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
       productCol.innerHTML = `
         <div class="related-product">
           <a href="/product/?name=${product.slug}">
-            <div class="related-product-image">
-              <img src="${product.image}" alt="${product.name}" onerror="this.src='/images/products/placeholder.png'" />
+            <div class="related-product-image" id="product-image-${product.slug.replace(/\W+/g, '-')}">
             </div>
             <div class="related-product-details">
               <h4>${product.name} <span class="related-product-price">₹${product.price || 'Contact for pricing'}</span></h4>
@@ -59,28 +60,9 @@ document.addEventListener('DOMContentLoaded', function() {
       // Add the product to the container
       productsContainer.appendChild(productCol);
       
-      // Handle image dimensions after the product is added to the DOM
-      const img = productCol.querySelector('.related-product-image img');
-      img.onload = function() {
-        // Add contain-fit class if image aspect ratio doesn't match container
-        const container = this.closest('.related-product-image');
-        const containerAspect = container.offsetWidth / container.offsetHeight;
-        const imgAspect = this.naturalWidth / this.naturalHeight;
-        
-        // If aspect ratios are significantly different or image has unusual dimensions, 
-        // use contain mode with padding
-        if (Math.abs(containerAspect - imgAspect) > 0.3 || 
-            this.naturalWidth < 100 || 
-            this.naturalHeight < 100 || 
-            this.naturalWidth > 800) {
-          this.classList.add('contain-fit');
-        }
-      };
-      
-      // Handle image loading error
-      img.onerror = function() {
-        this.classList.add('contain-fit');
-      };
+      // Initialize responsive image for this product
+      const productImageId = `product-image-${product.slug.replace(/\W+/g, '-')}`;
+      renderProductImage($(`#${productImageId}`), product.image, product.name);
     });
     
     // Initialize filter functionality

@@ -18,13 +18,8 @@ $(document).ready(function() {
         document.title = `Elder Pharmaceuticals - ${product.name}`;
         
         // Update product details
-        $('#product-image').attr('src', product.image);
-        $('#product-image').attr('alt', product.name);
-        
-        // Add an error handler for the image to use a placeholder if the product image doesn't exist
-        $('#product-image').on('error', function() {
-          $(this).attr('src', '/images/products/placeholder.png');
-        });
+        // Use responsive image function to render product image
+        renderProductImage($('#product-image-container'), product.image, product.name);
         
         $('#product-name').text(product.name);
         $('#product-category span').text(product.category);
@@ -54,12 +49,12 @@ $(document).ready(function() {
             $('.product-container').addClass('mb-5');
             
             relatedProducts.forEach(related => {
+              const relatedId = `related-image-${related.slug.replace(/\W+/g, '-')}`;
               $relatedContainer.append(`
                 <div class="col-lg-4 col-md-6">
                   <div class="related-product">
                     <a href="/product/?name=${related.slug}">
-                      <div class="related-product-image">
-                        <img src="${related.image}" alt="${related.name}" class="img-fluid" onerror="this.src='/images/products/placeholder.png'">
+                      <div class="related-product-image" id="${relatedId}">
                       </div>
                       <div class="related-product-details">
                         <h4>${related.name} <span class="related-product-price">₹${related.price || 'Contact for pricing'}</span></h4>
@@ -68,6 +63,9 @@ $(document).ready(function() {
                   </div>
                 </div>
               `);
+              
+              // Initialize responsive image for this related product
+              renderProductImage($(`#${relatedId}`), related.image, related.name);
             });
           } else {
             $('.row.mt-5.pt-4').hide();

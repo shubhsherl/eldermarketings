@@ -1,0 +1,13 @@
+{% comment %}
+Usage in JavaScript:
+  - For product main image: renderProductImage(productImageContainer, product.image, product.name);
+  - For related products: renderProductImage(relatedImageContainer, related.image, related.name);
+{% endcomment %}
+
+<div class="product-image-container">
+  {% if include.src and include.src != '' %}
+    {% include picture.html src=include.src alt=include.alt %}
+  {% else %}
+    <img src="/images/products/placeholder.png" alt="{{ include.alt | default: 'Product Image' }}" class="img-fluid">
+  {% endif %}
+</div>
