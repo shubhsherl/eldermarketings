@@ -88,19 +88,22 @@
 
       {%- comment -%} Styles {%- endcomment -%}
       <!-- Critical CSS -->
-      <link href="/vendor/bootstrap/bootstrap.min.css" rel="stylesheet" />
-      <link href="/css/theme.css" rel="stylesheet" />
+      <link href="/vendor/bootstrap/bootstrap.min.css" rel="stylesheet" defer/>
+      <link href="/css/theme.css" rel="stylesheet" defer/>
       
       <!-- Non-critical CSS with preload for important assets -->
       <link rel="preload" href="/fonts/sora-v10-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
       <link rel="preload" href="/fonts/sora-v10-latin-500.woff2" as="font" type="font/woff2" crossorigin>
       
-      <link href="/vendor/phosphor-icons/css/phosphor.css" rel="stylesheet" media="print" onload="this.media='all'" />
-      <link href="/vendor/magnific-popup/magnific-popup.css" rel="stylesheet" media="print" onload="this.media='all'" />
-      <link rel="stylesheet" href="/css/custom.css" />
-      <link rel="stylesheet" href="/css/responsive-images.css" />
+      <link href="/vendor/phosphor-icons/css/phosphor.css" rel="stylesheet" media="print" onload="this.media='all'" defer/>
+      <link href="/vendor/magnific-popup/magnific-popup.css" rel="stylesheet" media="print" onload="this.media='all'" defer/>
+      <link rel="stylesheet" href="/css/custom.css" defer/>
+      <link rel="stylesheet" href="/css/responsive-images.css" defer/>
+      <link rel="stylesheet" href="/css/whatsapp-widget.css" defer/>
       <!-- Contact Conversion Tracking -->
       <script src="/js/contact-conversion.js" defer></script>
+      <!-- WhatsApp Widget -->
+      <script src="/js/whatsapp-widget.js" defer></script>
       
       <!-- Inline critical responsive product images script -->
       <script>
@@ -232,10 +235,9 @@
         "logo": "{{ site.data.site.BaseURL }}/images/logo.png",
         "description": "{{ site.data.site.description }}",
         "sameAs": [
-          "https://www.facebook.com/elderpharma",
-          "https://twitter.com/elderpharma",
-          "https://www.linkedin.com/company/elder-pharmaceuticals",
-          "https://www.instagram.com/elderpharma"
+          "https://www.facebook.com/people/Elder-Marketing-and-Research-Private-Limited/61581400721090/",
+          "https://www.linkedin.com/company/elder-pharmaceutical/",
+          "https://www.instagram.com/elder.pharma/"
         ]
       }
       </script>

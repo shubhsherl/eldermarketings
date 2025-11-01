@@ -1,23 +1,16 @@
 ---
 logo: "/images/footer-logo.jpg"
 copyright: " Elder Marketing & Research Private Limited, All rights reserved!"
-# Social icons commented out
-# social:
-#   - link: "https://www.facebook.com"
-#     icon: "ph-facebook-logo"
-#     icon_alt: "Facebook"
-#   - link: "https://www.instagram.com"
-#     icon: "ph-instagram-logo"
-#     icon_alt: "Instagram"
-#   - link: "https://www.twitter.com"
-#     icon: "ph-twitter-logo"
-#     icon_alt: "Twitter"
-#   - link: "https://www.linkedin.com"
-#     icon: "ph-linkedin-logo"
-#     icon_alt: "LinkedIn"
-#   - link: "https://www.youtube.com"
-#     icon: "ph-youtube-logo"
-#     icon_alt: "YouTube"
+social:
+  - link: "https://www.facebook.com/people/Elder-Marketing-and-Research-Private-Limited/61581400721090/"
+    icon: "ph-facebook-logo"
+    icon_alt: "Facebook"
+  - link: "https://www.instagram.com/elder.pharma/"
+    icon: "ph-instagram-logo"
+    icon_alt: "Instagram"
+  - link: "https://www.linkedin.com/company/elder-pharmaceutical/"
+    icon: "ph-linkedin-logo"
+    icon_alt: "LinkedIn"
 sections:
   - title: Main Pages
     links:
