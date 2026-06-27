@@ -1,135 +1,115 @@
 ---
-title: Elder Pharmaceuticals - Products
+title: Products
 permalink: /products/
 seo:
-  page_description: Our product catalog
-  canonical_url: 
-  featured_image: 
-  author_twitter_handle: 
+  page_description: Explore Elder's catalog of high-quality pharmaceutical products across tablets, capsules, syrups, injections and more.
+  canonical_url:
+  featured_image:
+  author_twitter_handle:
   open_graph_type:
   noindex: false
 content_blocks:
   - _bookshop_name: feature/hero
     title: Our Products
     description: Explore our collection of high-quality products designed to meet your needs.
-    
-  - _bookshop_name: about/team
-    title: Products
-    team_members: []
 ---
 
-<!-- Include responsive product images script -->
-<script src="/js/responsive-product-images.js"></script>
-<script>
-// Function to dynamically populate products from JSON data
-document.addEventListener('DOMContentLoaded', function() {
-  // Reference to the container where products will be displayed
-  const productsContainer = document.querySelector('.team .row:last-child');
-  
-  // Load product data from JSON
-  loadProductData(function(data) {
-    console.log('Products loaded:', data.products.length, 'products found');
-    // Clear any existing content (the empty array in front matter ensures no static products)
-    productsContainer.innerHTML = '';
-    
-    // Loop through all products in the JSON data
-    data.products.forEach(function(product) {
-      // Create a column for each product
-      const productCol = document.createElement('div');
-      productCol.className = 'col-lg-4 col-md-6 product-item';
-      
-      // Set appropriate data category attributes for filtering
-      if (product.category) {
-        const categorySlug = product.category.toLowerCase().replace(/\s+/g, '-');
-        productCol.setAttribute('data-categories', categorySlug);
-      }
-      
-      // Create the product HTML
-      productCol.innerHTML = `
+{% assign products = site.data.products.products %} {% assign categories =
+site.data.products.categories %}
+
+<style>
+  .product-item.hidden {
+    display: none;
+  }
+</style>
+
+<div class="team">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-xl-7 mx-auto">
+        <div class="section-header">
+          <h2>Products</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-lg-10 mx-auto text-center">
+        <div class="product-filter-buttons">
+          <button class="filter-btn active" data-filter="all">All</button>
+          {% for category in categories %}
+          <button class="filter-btn" data-filter="{{ category | slugify }}">
+            {{ category }}
+          </button>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      {% for product in products %}
+      <div
+        class="col-lg-4 col-md-6 product-item"
+        data-categories="{{ product.category | slugify }}"
+      >
         <div class="related-product">
-          <a href="/product/?name=${product.slug}">
-            <div class="related-product-image" id="product-image-${product.slug.replace(/\W+/g, '-')}">
+          <a href="/product/{{ product.slug }}/">
+            <div class="related-product-image">
+              {% include picture.html src=product.image alt=product.name %}
             </div>
             <div class="related-product-details">
-              <h4>${product.name} <span class="related-product-price">₹${product.price || 'Contact for pricing'}</span></h4>
+              <h4>
+                {{ product.name }}
+                <span class="related-product-price">₹{{ product.price }}</span>
+              </h4>
             </div>
           </a>
         </div>
-      `;
-      
-      // Add the product to the container
-      productsContainer.appendChild(productCol);
-      
-      // Initialize responsive image for this product
-      const productImageId = `product-image-${product.slug.replace(/\W+/g, '-')}`;
-      renderProductImage($(`#${productImageId}`), product.image, product.name);
-    });
-    
-    // Initialize filter functionality
-    initializeFilters(data.categories);
-  });
-});
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
 
-// Function to initialize filter buttons based on available categories
-function initializeFilters(categories) {
-  const filterContainer = document.querySelector('.product-filter-buttons');
-  
-  // Clear existing filter buttons and add the "All" button
-  filterContainer.innerHTML = '<button class="filter-btn active" data-filter="all">All</button>';
-  
-  // Add buttons for each category in the JSON data
-  categories.forEach(function(category) {
-    const categorySlug = category.toLowerCase().replace(/\s+/g, '-');
-    const button = document.createElement('button');
-    button.className = 'filter-btn';
-    button.setAttribute('data-filter', categorySlug);
-    button.textContent = category;
-    filterContainer.appendChild(button);
-  });
-  
-  // Re-attach event listeners to the new buttons
-  document.querySelectorAll('.filter-btn').forEach(button => {
-    button.addEventListener('click', function() {
-      const filterValue = this.getAttribute('data-filter');
-      
-      // Update active button
-      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-      this.classList.add('active');
-      
-      // Show all products if "All" is selected
-      if (filterValue === 'all') {
-        document.querySelectorAll('.product-item').forEach(item => item.classList.remove('hidden'));
-        // Update URL without reloading page
-        history.pushState({}, '', '/products/');
-        return;
-      }
-      
-      // Filter products
-      document.querySelectorAll('.product-item').forEach(item => {
-        const categories = item.getAttribute('data-categories') || '';
-        // Perform exact category match instead of partial match
-        if (categories === filterValue) {
-          item.classList.remove('hidden');
+<script>
+  // Category filtering for the server-rendered product grid.
+  document.addEventListener("DOMContentLoaded", function () {
+    var buttons = Array.prototype.slice.call(
+      document.querySelectorAll(".filter-btn"),
+    );
+    var items = Array.prototype.slice.call(
+      document.querySelectorAll(".product-item"),
+    );
+
+    function applyFilter(filter) {
+      buttons.forEach(function (b) {
+        b.classList.toggle("active", b.getAttribute("data-filter") === filter);
+      });
+      items.forEach(function (item) {
+        var cats = item.getAttribute("data-categories") || "";
+        if (filter === "all" || cats === filter) {
+          item.classList.remove("hidden");
         } else {
-          item.classList.add('hidden');
+          item.classList.add("hidden");
         }
       });
-      
-      // Update URL without reloading page
-      history.pushState({}, '', '/products/?category=' + filterValue);
-    });
-  });
-  
-  // Check if there's a category parameter in the URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const categoryParam = urlParams.get('category');
-  
-  if (categoryParam) {
-    // Find and click the matching filter button
-    const matchingButton = document.querySelector(`.filter-btn[data-filter="${categoryParam}"]`);
-    if (matchingButton) {
-      matchingButton.click();
     }
-  }
-}
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var filter = this.getAttribute("data-filter");
+        applyFilter(filter);
+        history.pushState(
+          {},
+          "",
+          filter === "all" ? "/products/" : "/products/?category=" + filter,
+        );
+      });
+    });
+
+    // Honour a ?category= parameter on load.
+    var params = new URLSearchParams(window.location.search);
+    var category = params.get("category");
+    if (category) {
+      applyFilter(category);
+    }
+  });
 </script>

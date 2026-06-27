@@ -1,63 +1,37 @@
 ---
-title: Elder Pharmaceuticals - Product Details
+title: Product
 permalink: /product/
 seo:
-  page_description: Product details for our pharmaceutical products
-  canonical_url: 
-  featured_image: 
-  author_twitter_handle: 
-  open_graph_type:
-  noindex: false
+  page_description: Redirecting to the requested product.
+  noindex: true
 content_blocks:
 ---
 
 <section class="single-product">
   <div class="container">
-    <div class="row product-container" id="product-container">
-      <!-- Product details will be dynamically loaded here -->
-      <div class="col-lg-6 align-content-center">
-        <div class="product-image" id="product-image-container">
-          <img src="/images/products/placeholder.png" alt="Product Image" id="product-image" class="img-fluid">
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="product-details">
-          <h1 id="product-name">Product Name</h1>
-          <div class="product-meta mb-4">
-            <p class="product-category" id="product-category">Category: <span>Tablets</span></p>
-            <div class="price-container">
-              <p class="product-price">MRP: <span id="product-price">₹XX.XX</span></p>
-            </div>
-          </div>
-          <div class="product-description mb-4">
-            <h3>Description</h3>
-            <p id="product-description">Product description will appear here.</p>
-          </div>
-          <div class="product-features mb-4">
-            <h3>Key Features</h3>
-            <ul id="product-features">
-              <li>Feature will appear here</li>
-            </ul>
-          </div>
-          <div class="product-action">
-            <a href="/contact/?product=" id="contact-link" class="btn btn-primary">Contact Us About This Product</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <hr class="related-products-divider my-5">
-    
-    <div class="row mt-5 pt-4">
-      <div class="col-12">
-        <h2 class="text-center mb-5 related-products-heading">Related Products</h2>
-        <div class="row" id="related-products">
-          <!-- Related products will be dynamically loaded here -->
-        </div>
+    <div class="row">
+      <div class="col-12 text-center py-5">
+        <p>Redirecting…</p>
+        <a href="/products/" class="btn btn-primary">View All Products</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Include responsive product images script -->
-<script src="/js/responsive-product-images.js"></script>
+<script>
+  // Legacy URLs were /product/?name=<slug>. Redirect them to the new
+  // crawlable, server-rendered URLs at /product/<slug>/.
+  (function () {
+    var match = window.location.search.match(/[?&]name=([^&#]*)/);
+    if (match && match[1]) {
+      var slug = decodeURIComponent(match[1])
+        .toLowerCase()
+        .replace(/[^a-z0-9-]/g, "");
+      if (slug) {
+        window.location.replace("/product/" + slug + "/");
+        return;
+      }
+    }
+    window.location.replace("/products/");
+  })();
+</script>

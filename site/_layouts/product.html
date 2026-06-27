@@ -1,0 +1,87 @@
+---
+layout: base
+---
+{% assign product = page.product %}
+{% assign base = site.data.site.BaseURL %}
+<section class="single-product">
+  <div class="container">
+    <div class="row product-container{% if page.related_products.size > 0 %} mb-5{% endif %}" id="product-container">
+      <div class="col-lg-6 align-content-center">
+        <div class="product-image" id="product-image-container">
+          {% include picture.html src=product.image alt=product.name loading="eager" %}
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="product-details">
+          <h1 id="product-name">{{ product.name }}</h1>
+          <div class="product-meta mb-4">
+            <p class="product-category" id="product-category">Category: <span>{{ product.category }}</span></p>
+            <div class="price-container">
+              <p class="product-price">MRP: <span id="product-price">₹{{ product.price }}</span></p>
+            </div>
+          </div>
+          <div class="product-description mb-4">
+            <h3>Description</h3>
+            <p id="product-description">{{ product.description }}</p>
+          </div>
+          {% if product.features.size > 0 %}
+          <div class="product-features mb-4">
+            <h3>Key Features</h3>
+            <ul id="product-features">
+              {% for feature in product.features %}<li>{{ feature }}</li>{% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+          <div class="product-action">
+            <a href="/contact/?product={{ product.slug }}" id="contact-link" class="btn btn-primary">Contact Us About This Product</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% if page.related_products.size > 0 %}
+    <hr class="related-products-divider my-5">
+
+    <div class="row mt-5 pt-4">
+      <div class="col-12">
+        <h2 class="text-center mb-5 related-products-heading">Related Products</h2>
+        <div class="row" id="related-products">
+          {% for related in page.related_products %}
+          <div class="col-lg-4 col-md-6">
+            <div class="related-product">
+              <a href="/product/{{ related.slug }}/">
+                <div class="related-product-image">
+                  {% include picture.html src=related.image alt=related.name %}
+                </div>
+                <div class="related-product-details">
+                  <h4>{{ related.name }} <span class="related-product-price">₹{{ related.price }}</span></h4>
+                </div>
+              </a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": {{ product.name | jsonify }},
+  "image": "{{ base }}{{ product.image }}",
+  "description": {{ product.description | jsonify }},
+  "category": {{ product.category | jsonify }},
+  "brand": { "@type": "Brand", "name": "{{ site.data.site.site_title }}" },
+  "offers": {
+    "@type": "Offer",
+    "url": "{{ base }}{{ page.url }}",
+    "priceCurrency": "INR",
+    "price": "{{ product.price }}",
+    "availability": "https://schema.org/InStock"
+  }
+}
+</script>

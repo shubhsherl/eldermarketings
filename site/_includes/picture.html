@@ -9,39 +9,39 @@ Usage: {% include picture.html src="/path/to/image.jpg" alt="Description" width=
 {% assign dirname = base_image_path | remove: filename | remove: image_ext | remove: '.' %}
 {% assign image_base = dirname | append: filename | append: '-' %}
 
-<picture class="responsive-image">
+<picture class="responsive-image{% if include.class %} {{ include.class }}{% endif %}">
   <!-- AVIF format -->
   <source
     type="image/avif"
-    srcset="{{ image_base }}480.avif 480w, 
-            {{ image_base }}800.avif 800w, 
+    srcset="{{ image_base }}480.avif 480w,
+            {{ image_base }}800.avif 800w,
             {{ image_base }}1400.avif 1400w"
-    sizes="(max-width: 480px) 480px, 
-           (max-width: 800px) 800px, 
+    sizes="(max-width: 480px) 480px,
+           (max-width: 800px) 800px,
            1400px">
 
   <!-- WebP format -->
   <source
     type="image/webp"
-    srcset="{{ image_base }}480.webp 480w, 
-            {{ image_base }}800.webp 800w, 
+    srcset="{{ image_base }}480.webp 480w,
+            {{ image_base }}800.webp 800w,
             {{ image_base }}1400.webp 1400w"
-    sizes="(max-width: 480px) 480px, 
-           (max-width: 800px) 800px, 
+    sizes="(max-width: 480px) 480px,
+           (max-width: 800px) 800px,
            1400px">
 
   <!-- Original format (fallback) -->
   <img
     src="{{ base_image_path }}"
-    srcset="{{ image_base }}480.{{ image_ext }} 480w, 
-            {{ image_base }}800.{{ image_ext }} 800w, 
+    srcset="{{ image_base }}480.{{ image_ext }} 480w,
+            {{ image_base }}800.{{ image_ext }} 800w,
             {{ image_base }}1400.{{ image_ext }} 1400w"
-    sizes="(max-width: 480px) 480px, 
-           (max-width: 800px) 800px, 
+    sizes="(max-width: 480px) 480px,
+           (max-width: 800px) 800px,
            1400px"
     alt="{{ include.alt }}"
     {% if include.width %}width="{{ include.width }}"{% endif %}
     {% if include.height %}height="{{ include.height }}"{% endif %}
-    loading="lazy"
+    loading="{% if include.loading %}{{ include.loading }}{% else %}lazy{% endif %}"
     decoding="async">
 </picture>

@@ -3,7 +3,8 @@ permalink: /sitemap.xml
 layout: null
 ---
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
     {% assign collection_docs = site.documents %}
     {% assign all_pages = site.html_pages | concat: collection_docs %}
     {%- for item in all_pages %}
@@ -13,6 +14,13 @@ layout: null
                 <lastmod>{% if item.date %}{{ item.date | date: '%Y-%m-%d' }}{% else %}{{ site.time | date: '%Y-%m-%d' }}{% endif %}</lastmod>
                 <changefreq>{% if item.seo.change_frequency %}{{ item.seo.change_frequency }}{% else %}monthly{% endif %}</changefreq>
                 <priority>{% if item.seo.priority %}{{ item.seo.priority }}{% elsif item.url == "/" %}1.0{% else %}0.8{% endif %}</priority>
+                {%- if item.product %}
+                <image:image>
+                    <image:loc>{{ site.data.site.BaseURL }}{{ item.product.image }}</image:loc>
+                    <image:title>{{ item.product.name | xml_escape }}</image:title>
+                    <image:caption>{{ item.product.description | xml_escape }}</image:caption>
+                </image:image>
+                {%- endif %}
             </url>
         {% endunless %}
     {%- endfor %}
